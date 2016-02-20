@@ -1,0 +1,21 @@
+{
+  "name": "NFL_HACK",
+  "description": "Hackathon project",
+  "main": "",
+  "authors": [
+    "Derek Barnhart <derekbarnhart@gmail.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3.min": "https://raw.githubusercontent.com/mbostock/d3/master/d3.min.js"
+  }
+}
