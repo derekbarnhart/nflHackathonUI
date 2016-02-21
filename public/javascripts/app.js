@@ -144,8 +144,6 @@ function app(data, heatmapData){
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
-      .attr("background","green")
-      .style("fill","green")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     svg.append("g")
@@ -155,7 +153,7 @@ function app(data, heatmapData){
 
     svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + 0 + ")")
+            .attr("transform", "translate(0," + 0 + ") transform: rotateX( 45deg )")
             .call(xAxisTop)
 
 
