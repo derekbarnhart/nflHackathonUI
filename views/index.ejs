@@ -77,7 +77,8 @@
     <script>
 
       window.ctx = {
-        csvPath:"<%- filePath %>"
+        csvPath:"<%- filePath %>",
+        csvPathCoverage:"<%- coveragePath %>",
       };
 
     </script>
@@ -85,6 +86,7 @@
     <script src="bower_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
     <script src="javascripts/d3.geom.contour.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/q.js/0.9.2/q.min.js"></script>
     <script src="bower_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_modules/heatmap.js-amd/build/heatmap.min.js"></script>
     <script src="bower_modules/lodash/dist/lodash.min.js"></script>

@@ -5,15 +5,21 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Realtime Coverage',
   type:'TOUCHDOWN',
-  filePath:'sample_play_touchdown.csv' });
+  filePath:'sample_play_touchdown.csv',
+  coveragePath:'touchdown_coverage.csv'
+});
+
 });
 
 router.get('/:playString',function(req, res, next){
   console.log(req.params)
+
+var type = req.params.playString.split('_')[2];
   res.render('index',{
     title:'Realtime Coverage',
-    type:req.params.playString.split('_')[2].toUpperCase(),
-    filePath: req.params.playString +'.csv'
+    type:type.toUpperCase(),
+    filePath: req.params.playString +'.csv',
+    coveragePath:type+'_coverage.csv'
   })
 });
 
