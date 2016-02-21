@@ -6,3 +6,41 @@ body {
 a {
   color: #00B7FF;
 }
+
+.main {
+  margin-top:50px;
+
+
+}
+
+.axis path,
+ .axis line{
+   fill: none;
+   stroke: white;
+ }
+
+ .line{
+   fill: none;
+   stroke: none;
+   stroke-width: 2px;
+ }
+
+ .tick text{
+   font-size: 12px;
+   stroke:white;
+ }
+
+ .tick line{
+   opacity: 1;
+   fill:none;
+ }
+
+
+#field {
+  width:100%;
+  background:green;
+}
+
+svg {
+  fill:green;
+}

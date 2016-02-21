@@ -2,13 +2,58 @@
 <html>
   <head>
     <title><%= title %></title>
+    <!-- <link rel='stylesheet' href="bower_modules/bootstrap/dist/bootstrap.min.css"/> -->
+    <link rel='stylesheet' href="bower_modules/bootswatch/slate/bootstrap.min.css" />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div id="tester" style="width:600px;height:250px;"></div>
-    <script src="javascripts/plotly.js"></script>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right">
+
+            <div class="dropdown">
+              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Play
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dLabel">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+              </ul>
+            </div>
+
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="container main">
+      <div class="row">
+
+      </div>
+    </div>
+
+
+        <div id="field"></div>
+
+
+    <script src="bower_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+    <script src="javascripts/d3.geom.contour.min.js"></script>
+    <script src="bower_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_modules/lodash/dist/lodash.min.js"></script>
     <script src="javascripts/app.js"></script>
+
   </body>
 </html>

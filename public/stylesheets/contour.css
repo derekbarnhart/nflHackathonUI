@@ -1,0 +1,18 @@
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+}
+
+.axis path {
+  display: none;
+}
+
+.isoline {
+  fill: none;
+  stroke: #fff;
+}
