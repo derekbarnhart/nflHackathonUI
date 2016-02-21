@@ -87,8 +87,6 @@ function app(data, heatmapData){
 
   function buildHeatmapFrames(timeBins){
       // var newTimeBins = _.sortBy(timeBins,'millisecs_since_epoch');
-      // debugger
-
 
 
     return timeBins.map(function(timeBin){
@@ -118,13 +116,35 @@ function app(data, heatmapData){
       .orient("bottom")
       .innerTickSize(-height)
       .outerTickSize(0)
-      .tickPadding(10);
+      .tickPadding(10)
+      .tickFormat(function(d) {
+              if(d=== 0 || d== 120) return '';
+              d = d-10
+              if(d <50){
+                return d;
+              } else {
+
+                return 100 - d
+              }
+
+              return d; });;
 
   var xAxisTop = d3.svg.axis()
           .scale(xScale)
           .orient("top")
           .innerTickSize(-height)
           .outerTickSize(0)
+          .tickFormat(function(d) {
+            if(d=== 0 || d==120) return '';
+            d = d-10
+            if(d <50){
+              return d;
+            } else {
+
+              return 100 - d
+            }
+
+            return d; })
           .tickPadding(10);
 
   var yAxis = d3.svg.axis()
@@ -132,7 +152,8 @@ function app(data, heatmapData){
       .orient("left")
       .innerTickSize(-width)
       .outerTickSize(0)
-      .tickPadding(10);
+      .tickPadding(10)
+
 
   var line = d3.svg.line()
       .x(function(d) { return xScale(d.x); })

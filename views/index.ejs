@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title><%= title %> - <%= type %></title>
     <!-- <link rel='stylesheet' href="bower_modules/bootstrap/dist/bootstrap.min.css"/> -->
-    <link rel='stylesheet' href="bower_modules/bootswatch/united/bootstrap.min.css" />
+    <link rel='stylesheet' href="bower_modules/bootswatch/flatly/bootstrap.min.css" />
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
   </head>
@@ -20,10 +20,24 @@
           <a class="navbar-brand" href="#"><%= title %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
+
           <form class="navbar-form navbar-right">
-<a href = "#" id = "save" download="data.json">Save Canvas 1</a>
+<!-- <a href = "#" id = "save" download="data.json">Save Canvas 1</a> -->
+
+
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+    <div class="container main">
+      <div class="row" style="margin-left:20px;">
+          <div class="col-md-6">
+            <p style="color:white; opacity:.7;font-size:250%;margin-bottom:20px;">Coverage analysis:</p>
+            <p style="color:white;font-size:300%;margin-left:30px; margin-bottom:50px;"><%= type %></p>
+          </div>
+          <div class="col-md-offset-4 col-md-2">
             <div class="dropdown">
-              <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <button id="dLabel" type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Select Play
                 <span class="caret"></span>
               </button>
@@ -34,17 +48,12 @@
               </ul>
             </div>
 
-          </form>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
-    <div class="container main">
-      <div class="row">
-
+          </div>
       </div>
     </div>
 
-    <div style="position:relative; background-color:black;">
+
+    <div style="position:relative; background-color:black;width:90%;">
       <div style="position:absolute; z-index:-1; " class="heatmapContainer">
         <div style="height: 100%;  width:100%; background-color:black; top:0; left:0px; opacity:.5;" class="heatmap2"></div>
       </div>
