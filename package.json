@@ -12,6 +12,13 @@
     "ejs": "~2.3.3",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "bower": "0.6.x"
+  },
+  "scripts": {
+      "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "engines": {
+    "node": "4.2.6"
   }
 }
