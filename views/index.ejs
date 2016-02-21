@@ -17,7 +17,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+          <a class="navbar-brand" href="#"><%= title %></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -28,9 +28,9 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu" aria-labelledby="dLabel">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="/sample_play_touchdown">Touchdown</a></li>
+                <li><a href="/sample_play_sack">Sack</a></li>
+                <li><a href="/sample_play_interception">Interception</a></li>
               </ul>
             </div>
 
@@ -65,6 +65,13 @@
       </div>
 
   </div>
+    <script>
+
+      window.ctx = {
+        csvPath:"<%- filePath %>"
+      };
+
+    </script>
 
     <script src="bower_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>

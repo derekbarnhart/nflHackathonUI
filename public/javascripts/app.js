@@ -1,7 +1,7 @@
 
 
 //Collect Data
-d3.csv("sample_play_heat_2.csv")
+d3.csv( window.ctx.csvPath )
     .row(function(d) {
 
 
