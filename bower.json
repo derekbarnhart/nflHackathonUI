@@ -20,7 +20,8 @@
     "lodash": "^4.5.0",
     "bootswatch": "^3.3.6+1",
     "heatmap.js-amd": "heatmap.js.bower#*",
-    "q": "^2.0.2"
+    "q": "^2.0.2",
+    "eventDrops": "https://raw.githubusercontent.com/marmelab/EventDrops/master/dist/eventDrops.js"
   },
   "resolutions": {
     "bootswatch": "^3.3.6+1"

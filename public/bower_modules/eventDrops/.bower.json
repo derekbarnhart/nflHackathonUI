@@ -1,0 +1,14 @@
+{
+  "name": "eventDrops",
+  "_cacheHeaders": {
+    "ETag": "\"15673e027ba26b8120c12c8a78e7b231befa4832\"",
+    "Content-Length": "2860",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:15673e027",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/marmelab/EventDrops/master/dist/eventDrops.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/marmelab/EventDrops/master/dist/eventDrops.js",
+  "_direct": true
+}
