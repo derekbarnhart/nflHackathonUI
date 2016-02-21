@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <!-- <link rel='stylesheet' href="bower_modules/bootstrap/dist/bootstrap.min.css"/> -->
+
+
+  </head>
+  <body style="position:relative;">
+
+    <div style="position:absolute; width:100%;height:500px; z-index:2;">
+      <div style="height: 500px;  width:100%; top:0; left:0px; opacity:.5;" class="heatmap2"></div>
+    </div>
+    <div style="position:absolute; width:100%;height:500px;z-index:1;">
+      <div style="height: 500px; width:100%; top:0; left:0px; opacity:.5;" class="heatmap1"></div>
+    </div>
+
+    <script src="bower_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
+    <script src="javascripts/d3.geom.contour.min.js"></script>
+    <script src="bower_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_modules/heatmap.js-amd/build/heatmap.min.js"></script>
+    <script src="bower_modules/lodash/dist/lodash.min.js"></script>
+    <script>
+    // minimal heatmap instance configuration
+    var heatmapInstance1 = h337.create({
+      // only container is required, the rest will be defaults
+      container: document.querySelector('.heatmap1'),
+      gradient: {
+          // enter n keys between 0 and 1 here
+          // for gradient color customization
+          '1': 'red',
+          // '.8': 'red',
+          // '.95': 'white'
+        },
+        radius: 30,
+        blur: 1,
+        // the maximum opacity (the value with the highest intensity will have it)
+        maxOpacity: 1,
+        // minimum opacity. any value > 0 will produce
+        // no transparent gradient transition
+        minOpacity: 0
+
+    });
+
+    var heatmapInstance2 = h337.create({
+      // only container is required, the rest will be defaults
+      container: document.querySelector('.heatmap2'),
+      gradient: {
+          // enter n keys between 0 and 1 here
+          // for gradient color customization
+          '1': 'blue',
+          // '.8': 'red',
+          // '.95': 'white'
+        },
+        radius: 30,
+        blur: 1,
+        // the maximum opacity (the value with the highest intensity will have it)
+        maxOpacity: 1,
+        // minimum opacity. any value > 0 will produce
+        // no transparent gradient transition
+        minOpacity: 0
+
+    });
+
+
+    function createData(){
+      // now generate some random data
+      var points = [];
+      var max = 100;
+      var width = 840;
+      var height = 400;
+      var len = 200;
+
+      while (len--) {
+        var val = Math.floor(Math.random()*100);
+        max = Math.max(max, val);
+        var point = {
+          x: Math.floor(Math.random()*width),
+          y: Math.floor(Math.random()*height),
+          value: val
+        };
+        points.push(point);
+      }
+      // heatmap data format
+      var data = {
+      //  max: max,
+        data: points
+      };
+      return data;
+    }
+
+    var offensiveData = createData();
+    var defensiveData = createData();
+
+    // if you have a set of datapoints always use setData instead of addData
+    // for data initialization
+    heatmapInstance1.setData(offensiveData);
+    heatmapInstance2.setData(defensiveData);
+
+
+
+    </script>
+
+  </body>
+</html>

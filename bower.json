@@ -18,7 +18,8 @@
   "dependencies": {
     "d3.min": "https://raw.githubusercontent.com/mbostock/d3/master/d3.min.js",
     "lodash": "^4.5.0",
-    "bootswatch": "^3.3.6+1"
+    "bootswatch": "^3.3.6+1",
+    "heatmap.js-amd": "heatmap.js.bower#*"
   },
   "resolutions": {
     "bootswatch": "^3.3.6+1"
