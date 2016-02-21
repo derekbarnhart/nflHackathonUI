@@ -1,0 +1,14 @@
+{
+  "name": "d3.min",
+  "_cacheHeaders": {
+    "ETag": "\"2856dd2f35ed18e2fe001e6e397873492a974683\"",
+    "Content-Length": "53522",
+    "Content-Type": "text/plain; charset=utf-8"
+  },
+  "_release": "e-tag:2856dd2f3",
+  "main": "index.js",
+  "_source": "https://raw.githubusercontent.com/mbostock/d3/master/d3.min.js",
+  "_target": "*",
+  "_originalSource": "https://raw.githubusercontent.com/mbostock/d3/master/d3.min.js",
+  "_direct": true
+}

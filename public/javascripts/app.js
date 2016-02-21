@@ -1,56 +1,97 @@
 
 
 //Collect Data
-d3.csv( window.ctx.csvPath )
-    .row(function(d) {
 
 
-      d.circle1_r = +d.circle1_r;
-      d.circle1_x = +d.circle1_x;
-      d.circle1_y = +d.circle1_y;
-      d.circle2_r = +d.circle2_r;
-      d.circle2_x = +d.circle2_x;
-      d.circle2_y = +d.circle2_y;
+var positionData = Q.promise(function(resolve,reject){
+  d3.csv( window.ctx.csvPath )
+      .row(function(d) {
 
-      d.dis = parseFloat(d.dis);
-      d.gameId = +d.gameId;
-      d.gsisPlayId = +d.gsisPlayId;
-      d.jerseyNumber = +d.jerseyNumber;
 
-      var bin = parseFloat(d.millisecs_since_epoch)*100;
-      //bin - bin %10
-      d.millisecs_since_epoch = bin - (bin % 10);
-      d.nflId = +d.nflId;
-      d.ngsPlayId = +d.ngsPlayId;
-      d.s = parseFloat(d.s);
-      d.time = new Date(d.time);
-      d.weight = +d.weight;
-      d.x = +d.x;
-      d.y = +d.y;
+        d.circle1_r = +d.circle1_r;
+        d.circle1_x = +d.circle1_x;
+        d.circle1_y = +d.circle1_y;
+        d.circle2_r = +d.circle2_r;
+        d.circle2_x = +d.circle2_x;
+        d.circle2_y = +d.circle2_y;
 
-      return d;
-    })
-    .get(function(error, rows) {
+        d.dis = parseFloat(d.dis);
+        d.gameId = +d.gameId;
+        d.gsisPlayId = +d.gsisPlayId;
+        d.jerseyNumber = +d.jerseyNumber;
 
-      var playerPosition = d3.nest()
-      //.key(function(d){ return d.gameId; }) //Game
-      //.key(function(d){ return d.ngsPlayId; }) //
+        var bin = parseFloat(d.millisecs_since_epoch)*100;
+        //bin - bin %10
+        d.millisecs_since_epoch = bin - (bin % 10);
+        d.nflId = +d.nflId;
+        d.ngsPlayId = +d.ngsPlayId;
+        d.s = parseFloat(d.s);
+        d.time = new Date(d.time);
+        d.weight = +d.weight;
+        d.x = +d.x;
+        d.y = +d.y;
 
-        .key(function(d){ return d.nflId; })
-        .key(function(d){ return d.millisecs_since_epoch })
-        .entries(rows);
+        return d;
+      })
+      .get(function(error, rows) {
 
-      var playerHeat = d3.nest()
-        .key(function(d){ return d.team; })
-        .key(function(d){ return d.millisecs_since_epoch })
-        .entries(rows);
+        var playerPosition = d3.nest()
+        //.key(function(d){ return d.gameId; }) //Game
+        //.key(function(d){ return d.ngsPlayId; }) //
 
-      app(playerPosition, playerHeat)
+          .key(function(d){ return d.nflId; })
+          .key(function(d){ return d.millisecs_since_epoch })
+          .entries(rows);
+
+        var playerHeat = d3.nest()
+          .key(function(d){ return d.team; })
+          .key(function(d){ return d.millisecs_since_epoch })
+          .entries(rows);
+
+          resolve([playerPosition,playerHeat])
+      });
+})
+
+var coverageData = Q.promise(function(resolve,reject){
+
+  d3.csv( window.ctx.csvPathCoverage )
+      .row(function(d) {
+
+  
+
+        d.away_cover_px= +d.away_cover_px;
+        d.coverage= parseFloat(d.coverage);
+        d.coverage_smooth = (d.coverage_smooth === "NA") ? 0: parseFloat(d.coverage_smooth)
+
+
+        var bin = parseFloat(d.millisecs_since_epoch)*100;
+        //bin - bin %10
+        d.millisecs_since_epoch = bin - (bin % 10);
+
+        return d;
+      })
+      .get(function(error, rows) {
+
+        var playerPosition = d3.nest()
+        //.key(function(d){ return d.gameId; }) //Game
+        //.key(function(d){ return d.ngsPlayId; }) //
+
+          .key(function(d){ return d.nflId; })
+          .key(function(d){ return d.millisecs_since_epoch })
+          .entries(rows);
+
+          resolve(playerPosition);
+      });
+
     });
 
 
 
+Q.all([ positionData,coverageData])
+.then(function(payload){
 
+    app( payload[0][0], payload[0][1], payload[1])
+})
 
 
 function app(data, heatmapData){
@@ -87,8 +128,6 @@ function app(data, heatmapData){
 
   function buildHeatmapFrames(timeBins){
       // var newTimeBins = _.sortBy(timeBins,'millisecs_since_epoch');
-      // debugger
-
 
 
     return timeBins.map(function(timeBin){
@@ -118,13 +157,35 @@ function app(data, heatmapData){
       .orient("bottom")
       .innerTickSize(-height)
       .outerTickSize(0)
-      .tickPadding(10);
+      .tickPadding(10)
+      .tickFormat(function(d) {
+              if(d=== 0 || d== 120) return '';
+              d = d-10
+              if(d <50){
+                return d;
+              } else {
+
+                return 100 - d
+              }
+
+              return d; });;
 
   var xAxisTop = d3.svg.axis()
           .scale(xScale)
           .orient("top")
           .innerTickSize(-height)
           .outerTickSize(0)
+          .tickFormat(function(d) {
+            if(d=== 0 || d==120) return '';
+            d = d-10
+            if(d <50){
+              return d;
+            } else {
+
+              return 100 - d
+            }
+
+            return d; })
           .tickPadding(10);
 
   var yAxis = d3.svg.axis()
@@ -132,7 +193,8 @@ function app(data, heatmapData){
       .orient("left")
       .innerTickSize(-width)
       .outerTickSize(0)
-      .tickPadding(10);
+      .tickPadding(10)
+
 
   var line = d3.svg.line()
       .x(function(d) { return xScale(d.x); })
@@ -144,8 +206,6 @@ function app(data, heatmapData){
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
-      .attr("background","green")
-      .style("fill","green")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     svg.append("g")
@@ -169,7 +229,7 @@ function app(data, heatmapData){
       var playerMarker = svg.append("circle");
 
 
-      var color = player.team == "HOME" ? 'green' : 'red';
+      var color = player.team == "HOME" ? 'rgba(0,255,0,.5)' : 'rgba(255,0,0,.5)';
       playerMarker.attr("r", xScale(0.5))
         .style("fill",color)
         .attr("transform", "translate(" + xScale(data[0].values[0].values[0].x) + ","+ yScale(data[0].values[0].values[0].y)  +")" );
